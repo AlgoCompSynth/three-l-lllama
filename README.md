@@ -1,15 +1,19 @@
 # three-l-lllama
 
- The one-l lama,
- He's a priest.
- The two-l llama,
- He's a beast.
- And I will bet
- A silk pajama
- There isn't any
- Three-l lllama.*
+ The one-l lama,<br>
+ He's a priest.<br>
+ The two-l llama,<br>
+ He's a beast.<br>
+ And I will bet<br>
+ A silk pajama<br>
+ There isn't any<br>
+ Three-l lllama.*<br>
+<br>
+-- Ogden Nash<br>
+<br>
+ *The author's attention has been called to a type of conflagration known as a three-alarmer. Pooh.
 
--- Ogden Nash
+ * * *
 
 Well, sir, there is now!
 
