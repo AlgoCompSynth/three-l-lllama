@@ -1,0 +1,34 @@
+echo ""
+echo "Setting host-specific environment variables:"
+
+# ** You should not need to change anything below here **
+
+## `COMPUTE_MODE`
+
+## We can build two types of containers:
+##
+## 1. COMPUTE_MODE=CPU - only the CPU will be used, and
+## 2. COMPUTE_MODE=CUDA - the CPU and an NVIDIA GPU will be used.
+
+## If the NVIDIA container toolkit exists AND detects one or more GPUs
+## AND the architecture is `x86_64`, `COMPUTE_MODE` will be set to
+## `CUDA`; otherwise it will be set to `CPU`.
+export ARCH="$(uname -m)"
+echo "ARCH: $ARCH"
+
+if [[ "$ARCH" == "x86_64" \
+  && "$(which nvidia-ctk 2> /dev/null | wc -l)" > "0" \
+  && "$(nvidia-ctk cdi list | grep gpu | wc -l)" > "0" ]]
+
+then
+  export COMPUTE_MODE="CUDA"
+
+else
+  export COMPUTE_MODE="CPU"
+
+fi
+
+echo "COMPUTE_MODE: $COMPUTE_MODE"
+
+export OS_ID="$(grep '^ID=' /etc/os-release | sed 's/^ID=//')"
+echo "OS_ID: $OS_ID"
