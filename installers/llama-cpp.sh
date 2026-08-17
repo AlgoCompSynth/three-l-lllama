@@ -12,7 +12,6 @@ source nvidia-smi-test.sh
 # https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md
 export LLAMA_CPP_VERSION=b10453
 export LLAMA_CPP_REPO=https://github.com/ggml-org/llama.cpp
-#export CUDACXX=/usr/local/cuda-13.3/bin/nvcc
 mkdir --parents $HOME/Projects
 pushd $HOME/Projects > /dev/null
   echo "....Cloning llama.cpp $LLAMA_CPP_VERSION"
@@ -25,22 +24,22 @@ pushd $HOME/Projects > /dev/null
   then
     export CUDACXX="/usr/local/cuda-13.3/bin/nvcc"
     cmake -B build -DGGML_BLAS=ON -DGGML_BLAS_VENDOR=OpenBLAS -DGGML_VULKAN=1 -DGGML_CUDA=ON \
-      #>> $LOGFILE 2>&1
+      >> $LOGFILE 2>&1
 
   else
     cmake -B build -DGGML_BLAS=ON -DGGML_BLAS_VENDOR=OpenBLAS -DGGML_VULKAN=1 \
-      #>> $LOGFILE 2>&1
+      >> $LOGFILE 2>&1
 
   fi
 
   echo "....Compiling llama.cpp"
   /usr/bin/time cmake --build build --config Release -j$(nproc) \
-    #>> $LOGFILE 2>&1
+    >> $LOGFILE 2>&1
   echo "....Installing llama.cpp"
   sudo cmake --install build \
-    #>> $LOGFILE 2>&1
+    >> $LOGFILE 2>&1
   sudo /usr/sbin/ldconfig --verbose \
-    #>> $LOGFILE 2>&1
+    >> $LOGFILE 2>&1
   echo "....llama.cpp installed"
 
 popd > /dev/null
