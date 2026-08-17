@@ -6,22 +6,7 @@ mkdir --parents $HOME/Logfiles
 export LOGFILE=$HOME/Logfiles/llama-cpp.log
 rm --force $LOGFILE
 
-mkdir --parents $HOME/.local/bin
-
-#echo "....Activating Homebrew PATH"
-#eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
-
-#echo "....Installing Pi coding agent"
-#brew install --yes --quiet \
-  #pi-coding-agent \
-  #>> $LOGFILE 2>&1
-
-#echo "....Cleaning up"
-#brew cleanup --prune all --scrub --quiet \
-  #>> $LOGFILE 2>&1
-
-#echo "....Installing pi-llama plugin"
-#pi install git:github.com/huggingface/pi-llama
+source nvidia-smi-test.sh
 
 # https://aicompetence.org/running-llama-on-raspberry-pi-5/
 # https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md
@@ -36,9 +21,17 @@ pushd $HOME/Projects > /dev/null
   cd llama.cpp
 
   echo "....Configuring llama.cpp"
-  #cmake -B build -DGGML_CUDA=ON \
-  cmake -B build -DGGML_BLAS=ON -DGGML_BLAS_VENDOR=OpenBLAS -DGGML_VULKAN=1 \
-    #>> $LOGFILE 2>&1
+  if [[ "$COMPUTE_MODE" == "CUDA" ]]
+  then
+    export CUDACXX="/usr/local/cuda-13.3/bin/nvcc"
+    cmake -B build -DGGML_BLAS=ON -DGGML_BLAS_VENDOR=OpenBLAS -DGGML_VULKAN=1 -DGGML_CUDA=ON \
+      #>> $LOGFILE 2>&1
+
+  else
+    cmake -B build -DGGML_BLAS=ON -DGGML_BLAS_VENDOR=OpenBLAS -DGGML_VULKAN=1 \
+      #>> $LOGFILE 2>&1
+
+  fi
 
   echo "....Compiling llama.cpp"
   /usr/bin/time cmake --build build --config Release -j$(nproc) \

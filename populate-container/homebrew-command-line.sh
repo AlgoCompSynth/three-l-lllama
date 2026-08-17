@@ -2,12 +2,20 @@
 
 set -eu
 
-mkdir --parents $HOME/Logfiles
-export LOGFILE=$HOME/Logfiles/brew-command-line.log
-rm --force $LOGFILE
-
 echo "....Setting up home directory"
 mkdir --parents $HOME/.local/bin $HOME/Logfiles $HOME/Projects
+export LOGFILE=$HOME/Logfiles/homebrew-command-line.log
+rm --force $LOGFILE
+
+NONINTERACTIVE=1 /bin/bash -c \
+  "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" \
+  >> $LOGFILE 2>&1
+
+echo "....Adding Homebrew to the command line"
+echo "" >> $HOME/.bashrc
+echo \
+  'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"' \
+  >> $HOME/.bashrc
 
 echo "....Activating Homebrew PATH"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
@@ -20,6 +28,7 @@ brew install --yes --quiet \
   lua \
   luajit \
   neovim \
+  pi-coding-agent \
   ripgrep \
   starship \
   tmux \
@@ -28,6 +37,10 @@ brew install --yes --quiet \
 
 echo "....Cleaning up"
 brew cleanup --prune all --scrub --quiet \
+  >> $LOGFILE 2>&1
+
+echo "....Installing pi-llama plugin"
+pi install git:github.com/huggingface/pi-llama \
   >> $LOGFILE 2>&1
 
 echo "....Setting configuration files"
@@ -49,3 +62,5 @@ then
   echo 'eval "$(starship init zsh)"' >> $HOME/.zshrc
 
 fi
+
+echo "....Finished"

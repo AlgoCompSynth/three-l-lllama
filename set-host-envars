@@ -31,15 +31,6 @@ fi
 echo "COMPUTE_MODE: $COMPUTE_MODE"
 
 ## Distrobox
-if [[ "$COMPUTE_MODE" == "CUDA" ]]
-then
-  export IMAGE_NAME="ghcr.io/ggml-org/llama.cpp:full-cuda13"
-
-else
-  export IMAGE_NAME="ghcr.io/ggml-org/llama.cpp:full"
-
-fi
-echo "IMAGE_NAME: $IMAGE_NAME"
 export CONTAINER_NAME="three-l-lllama-$COMPUTE_MODE"
 echo "CONTAINER_NAME: $CONTAINER_NAME"
 export CONTAINER_HOME="$HOME/$CONTAINER_NAME-Home"
