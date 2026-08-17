@@ -23,6 +23,7 @@ mkdir --parents $HOME/.local/bin
 #echo "....Installing pi-llama plugin"
 #pi install git:github.com/huggingface/pi-llama
 
+# https://aicompetence.org/running-llama-on-raspberry-pi-5/
 # https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md
 export LLAMA_CPP_VERSION=b10453
 export LLAMA_CPP_REPO=https://github.com/ggml-org/llama.cpp
