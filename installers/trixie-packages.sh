@@ -28,8 +28,6 @@ sudo apt-get install -qqy \
   plocate \
   spirv-headers \
   time \
-  tmux \
-  tree \
   vim-nox \
   vulkan-tools \
   zlib1g-dev \
