@@ -2,9 +2,16 @@
 
 set -eu
 
-echo "* Re-create Distrobox *"
+echo "* Create Distrobox *"
 
 source set-host-envars
+
+if [[ "$(distrobox list 2>/dev/null | grep "$CONTAINER_NAME" | wc -l)" -gt "0" ]]
+then
+  echo "..$CONTAINER_NAME already exists - exiting"
+  exit 0
+
+fi
 
 echo "..Building base image"
 podman image build \
@@ -17,11 +24,7 @@ podman image build \
 echo ""
 podman image list
 
-echo "..Force-removing any existing $CONTAINER_NAME and $CONTAINER_HOME"
-distrobox rm --force $CONTAINER_NAME
-rm --recursive --force $CONTAINER_HOME
-
-echo "..Re-creating $CONTAINER_NAME"
+echo "..Creating $CONTAINER_NAME"
 distrobox assemble create \
   --name $CONTAINER_NAME
 
@@ -36,5 +39,5 @@ echo \
   > $ENTRY_SCRIPT
 chmod +x $ENTRY_SCRIPT
 
-echo "* Finished Re-create Distrobox *"
+echo "* Finished Create Distrobox *"
 echo ""
