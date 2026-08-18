@@ -31,6 +31,8 @@ fi
 echo "COMPUTE_MODE: $COMPUTE_MODE"
 
 ## Distrobox
+export IMAGE_NAME="three-l-lllama-base:latest"
+echo "IMAGE_NAME: $IMAGE_NAME"
 export CONTAINER_NAME="three-l-lllama-$COMPUTE_MODE"
 echo "CONTAINER_NAME: $CONTAINER_NAME"
 export CONTAINER_HOME="$HOME/$CONTAINER_NAME-Home"

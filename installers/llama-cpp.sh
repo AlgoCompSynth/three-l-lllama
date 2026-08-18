@@ -38,7 +38,7 @@ pushd $HOME/Projects > /dev/null
   echo "....Installing llama.cpp"
   sudo cmake --install build \
     >> $LOGFILE 2>&1
-  sudo /usr/sbin/ldconfig --verbose \
+  sudo /usr/sbin/ldconfig \
     >> $LOGFILE 2>&1
   echo "....llama.cpp installed"
 

@@ -25,7 +25,7 @@ pushd $HOME/Projects > /dev/null
   echo "....Installing terra"
   sudo make install \
     >> $LOGFILE 2>&1
-  sudo /usr/sbin/ldconfig --verbose \
+  sudo /usr/sbin/ldconfig \
     >> $LOGFILE 2>&1
   echo "....terra installed"
 

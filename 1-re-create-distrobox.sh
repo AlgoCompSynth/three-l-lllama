@@ -6,6 +6,17 @@ echo "* Re-create Distrobox *"
 
 source set-host-envars
 
+echo "..Building base image"
+podman image build \
+  --file Containerfile \
+  --format docker \
+  --squash-all \
+  --tag $IMAGE_NAME \
+  .
+
+echo ""
+podman image list
+
 echo "..Force-removing any existing $CONTAINER_NAME and $CONTAINER_HOME"
 distrobox rm --force $CONTAINER_NAME
 rm --recursive --force $CONTAINER_HOME

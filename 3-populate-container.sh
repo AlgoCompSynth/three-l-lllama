@@ -9,9 +9,6 @@ source set-host-envars
 cp -rp installers $CONTAINER_HOME
 pushd $CONTAINER_HOME/installers > /dev/null
 
-  echo "..Installing apt packages"
-  distrobox enter $CONTAINER_NAME -- ./trixie-packages.sh
-
   if [[ "$COMPUTE_MODE" == "CUDA" ]]
   then
     distrobox enter $CONTAINER_NAME -- ./trixie-cuda.sh
