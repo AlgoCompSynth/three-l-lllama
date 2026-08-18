@@ -49,11 +49,52 @@ Finally, `three-l-lllama` provides a command line based on
 [`Pi` coding agent](https://pi.dev/), the [Starship](https://starship.rs/)
 shell prompt generator, the [Neovim](https://neovim.io/) editor, and, of
 course, Lua.
+
+## Getting started on a Linux host
+
+You will need Distrobox and Podman installed. Recent version of Fedora,
+Ubuntu, Debian, Arch and their derivatives all have usable versions, so it's
+just a matter of installing them in the package manager.
+
+I don't have any AMD CPUs or GPUs so I can't help you with specific tuning issues.
+For NVIDIA, you should have a GTX 1600 / RTX 2000 series card or newer. You need
+the NVIDIA Container Toolkit on the host but you do not need CUDA - that runs in
+the container!
+
+```
+git clone https://github.com/AlgoCompSynth/three-l-lllama.git
+cd three-l-lllama
+./1-re-create-distrobox.sh
+```
+
+This with create the empty container and its home directory. If the script detects
+an NVIDIA GPU, the container will be called `three-l-lllama-CUDA` and its home directory
+will be `~/three-l-lllama-CUDA-Home`. If it does not find a GPU these will be
+`three-l-lllama-CPU` and `~/three-l-lllama-CPU-Home`.
+
+Next, you will need to set an administrator password in the container so you can use `sudo`.
+
+```
+❯ ./2-set-admin-password.sh
+* Set Administrator Password *
+
+Setting host-specific environment variables:
+ARCH: x86_64
+INFO[0000] Found 3 CDI devices
+COMPUTE_MODE: CUDA
+IMAGE_NAME: three-l-lllama-base:latest
+CONTAINER_NAME: three-l-lllama-CUDA
+CONTAINER_HOME: /home/znmeb/three-l-lllama-CUDA-Home
+..You need to set a '*****' password to use 'sudo' in the container
+New password:
+Retype new password:
+passwd: password updated successfully
+* Finished Set Administrator Password *
+```
+
 ## Getting started on a Raspberry Pi 5
 
 Prerequisites: a Raspberry Pi ***5*** with at least 8 GiB of RAM and a
 solid-state disk or USB 3 disk drive. microSD card storage, Pi 5s with
 less than 8 GiB of RAM or Raspberry Pis older than a Pi 5 / CM5 / Pi 500
 are not supported!
-
-## Getting started on Bluefin Dakota
