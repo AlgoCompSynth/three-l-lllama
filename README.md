@@ -66,11 +66,14 @@ git clone https://github.com/AlgoCompSynth/three-l-lllama.git
 cd three-l-lllama
 ./1-re-create-distrobox.sh
 ```
+This will create the empty container and its home directory. If the script detects an
+existing container, it will exit without doing anything! Otherwise, it will create a
+base image and a container.
 
-This with create the empty container and its home directory. If the script detects
-an NVIDIA GPU, the container will be called `three-l-lllama-CUDA` and its home directory
-will be `~/three-l-lllama-CUDA-Home`. If it does not find a GPU these will be
-`three-l-lllama-CPU` and `~/three-l-lllama-CPU-Home`.
+If the script detects an NVIDIA GPU, the container will be called `three-l-lllama-CUDA`
+and its home directory will be `~/three-l-lllama-CUDA-Home`. If it does not find a GPU
+these will be `three-l-lllama-CPU` and `~/three-l-lllama-CPU-Home`. The home directory
+will be created if it does not exist.
 
 Next, you will need to set an administrator password in the container so you can use `sudo`.
 
@@ -90,6 +93,80 @@ New password:
 Retype new password:
 passwd: password updated successfully
 * Finished Set Administrator Password *
+```
+
+Finally, populate the container:
+
+```
+./3-populate-container.sh
+```
+
+This will install the NVIDIA container toolkit in the container if the compute mode
+is CUDA. Then it will compile `llama.cpp`. This takes quite some time; it is optimzing
+for your CPU via `--march=native`. However, `ccache` is enabled, so if you decide to
+re-compile with a newer version, modules from previous compiles that have not changed
+will not be recompiled.
+
+After `llama.cpp`, the script recompiles `terra`. This runs fairly quickly, although 
+the test suite after the compile takes a few minutes. All the tests should pass; if
+any fail, please open an issue at
+<https://github.com/AlgoCompSynth/three-l-lllama/issues/new>!
+
+The last operation installs the Homebrew command line. This is what a typical run
+looks like:
+
+```
+* Populate Container *
+
+Setting host-specific environment variables:
+ARCH: x86_64
+INFO[0000] Found 3 CDI devices
+COMPUTE_MODE: CUDA
+IMAGE_NAME: three-l-lllama-base:latest
+CONTAINER_NAME: three-l-lllama-CUDA
+CONTAINER_HOME: /home/znmeb/three-l-lllama-CUDA-Home
+....Installing CUDA toolkit
+....CUDA toolkit is installed
+..Installing llama.cpp
+COMPUTE_MODE: CUDA
+....Cloning llama.cpp b10453
+....Configuring llama.cpp
+....Compiling llama.cpp
+....Installing llama.cpp
+....llama.cpp installed
+..Installing Terra
+....Cloning terra 1.2.2
+....Configuring terra
+....Compiling terra
+....Installing terra
+....terra installed
+....Testing terra
+....terra tests complete
+vtablerec.t
+weirdheader.t
+zeroargs.t
+zeroreturn.t
+zeroreturn2.t
+=================
+
+564 tests passed. 0 tests failed.
+69.47user 7.19system 1:16.91elapsed 99%CPU (0avgtext+0avgdata 1033128maxresident)k
+0inputs+2152outputs (0major+3006496minor)pagefaults 0swaps
+..Installing Homebrew command line
+....Setting up home directory
+....Adding Homebrew to the command line
+....Activating Homebrew PATH
+....Installing brew packages
+....Cleaning up
+....Installing pi-llama plugin
+....Setting configuration files
+....Appending starship init to /home/znmeb/three-l-lllama-CUDA-Home/.bashrc
+....Finished
+
+REPOSITORY                     TAG               IMAGE ID      CREATED         SIZE
+localhost/three-l-lllama-base  latest            a33476d542d3  15 minutes ago  6.14 GB
+docker.io/library/debian       trixie-backports  b964a672fbff  13 days ago     124 MB
+* Finished Populate Container
 ```
 
 ## Getting started on a Raspberry Pi 5
