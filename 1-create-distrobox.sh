@@ -17,8 +17,8 @@ echo "..Building base image"
 podman image build \
   --file Containerfile \
   --format docker \
-  --squash-all \
   --tag $IMAGE_NAME \
+  --squash-all \
   .
 
 echo ""

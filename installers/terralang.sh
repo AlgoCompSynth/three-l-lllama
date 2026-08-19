@@ -6,7 +6,8 @@ mkdir --parents $HOME/Logfiles
 export LOGFILE=$HOME/Logfiles/terralang.log
 rm --force $LOGFILE
 
-export TERRA_VERSION=1.2.2
+source set-versions.sh
+
 export TERRA_REPO=https://github.com/terralang/terra.git
 mkdir --parents $HOME/Projects
 pushd $HOME/Projects > /dev/null

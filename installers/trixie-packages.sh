@@ -6,9 +6,8 @@ mkdir --parents $HOME/Logfiles
 export LOGFILE=$HOME/Logfiles/trixie-packages.log
 rm --force $LOGFILE
 
-export LLVM_VERSION=22
+source set-versions.sh
 
-export CMAKE_VERSION=4.4.2
 export MACHINE=$(uname --machine)
 export CMAKE_TARBALL=cmake-$CMAKE_VERSION-linux-$MACHINE.tar.gz
 export CMAKE_URL=https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/$CMAKE_TARBALL
@@ -25,6 +24,8 @@ sudo apt-get install -qqy \
   apt-file \
   build-essential \
   ccache \
+  clinfo \
+  clpeak \
   curl \
   file \
   git \
@@ -40,6 +41,7 @@ sudo apt-get install -qqy \
   lsb-release \
   man-db \
   plocate \
+  pocl-opencl-icd \
   spirv-headers \
   sudo \
   time \

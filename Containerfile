@@ -3,7 +3,7 @@ LABEL maintainer="M. Edward (Ed) Borasky <znmeb@algocompsynth.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /root
-COPY installers/trixie-packages.sh /root/
+COPY installers/trixie-packages.sh installers/set-versions.sh /root/
 RUN apt-get update -qq \
   && apt-get install -qqy \
     sudo \
