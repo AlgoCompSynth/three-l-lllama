@@ -40,6 +40,7 @@ sudo apt-get install -qqy \
   libzstd-dev \
   lsb-release \
   man-db \
+  ninja-build \
   plocate \
   pocl-opencl-icd \
   spirv-headers \
