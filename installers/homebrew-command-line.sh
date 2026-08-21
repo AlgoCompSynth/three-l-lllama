@@ -23,21 +23,15 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 echo "....Installing brew packages"
 brew install --yes --quiet \
   font-fira-code-nerd-font \
-  lua \
-  luajit \
+  fzf \
+  gh \
   neovim \
-  pi-coding-agent \
   ripgrep \
   starship \
-  tree \
   >> $LOGFILE 2>&1
 
 echo "....Cleaning up"
 brew cleanup --prune all --scrub --quiet \
-  >> $LOGFILE 2>&1
-
-echo "....Installing pi-llama plugin"
-pi install git:github.com/huggingface/pi-llama \
   >> $LOGFILE 2>&1
 
 echo "....Setting configuration files"
