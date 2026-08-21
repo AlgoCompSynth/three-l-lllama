@@ -22,32 +22,19 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 
 echo "....Installing brew packages"
 brew install --yes --quiet \
-  fennel \
   font-fira-code-nerd-font \
   lua \
   luajit \
-  luarocks \
-  micromamba \
   neovim \
   pi-coding-agent \
   ripgrep \
   starship \
-  tmux \
   tree \
   >> $LOGFILE 2>&1
 
 echo "....Cleaning up"
 brew cleanup --prune all --scrub --quiet \
   >> $LOGFILE 2>&1
-
-echo "....Setting up 'mamba' command line access"
-/home/linuxbrew/.linuxbrew/opt/micromamba/bin/mamba shell init --shell bash --root-prefix ~/mamba
-
-if [[ -f $HOME/.zshrc ]]
-then
-  /home/linuxbrew/.linuxbrew/opt/micromamba/bin/mamba shell init --shell zsh --root-prefix ~/mamba
-
-fi
 
 echo "....Installing pi-llama plugin"
 pi install git:github.com/huggingface/pi-llama \

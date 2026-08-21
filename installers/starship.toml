@@ -166,7 +166,7 @@ symbol = " "
 symbol = " "
 
 [username]
-show_always = true
+show_always = false
 
 [zig]
 symbol = " "

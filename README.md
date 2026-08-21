@@ -15,27 +15,28 @@
 
  * * *
 
-Well, sir, there is a three-l lllama now!
+Well, sir, there _is_ a three-l lllama now!
 
 ## Introduction
 
 `three-l-llama` is a pet [`Distrobox`](https://distrobox.it/) container
 designed for developers exploring large language models (LLMs) and the
-[`LLVM`](https://llvm.org/) compiler infrastructure. Although the
-primary target is a Linux PC with an NVIDIA GPU, `three-l-lllama`
-provides scripts for installing the software on a Raspberry Pi 5.
+[`LLVM`](https://llvm.org/) compiler infrastructure. The first release
+features [`llama.cpp`](https://llama.app/) and
+[`Terra`](https://terralang.org).
 
-[`llama.cpp`](https://llama.app/) provides the infrastructure for running
-LLMs locally. `three-l-llama` uses `llama.cpp` because it's easily
-compiled from source, provides many performance monitoring and tuning
-tools, and can use multiple high-performance computing modes - GPUs,
-SIMD instructions in the CPU, [Vulkan](https://www.vulkan.org/), and
-[OpenBLAS](https://www.openmathlib.org/OpenBLAS/).
+`llama.cpp` provides the infrastructure for running LLMs locally.
+`three-l-llama` uses `llama.cpp` because it's easily compiled from
+source, provides many performance monitoring and tuning tools, and
+can use multiple high-performance computing modes - `CUDA` GPUs, SIMD
+CPU instructions, [Vulkan](https://www.vulkan.org/),
+[OpenBLAS](https://www.openmathlib.org/OpenBLAS/), and
+[OpenCL](https://www.khronos.org/opencl/).
 
-[`Terra`](https://terralang.org) provides the tools for exploring and using
-`LLVM`. `Terra` is a low-level language tightly integrated with Lua. As a
-result it's optimized for creating domain-specific languages optimized by
-`LLVM`, including `CUDA` GPUs.
+`Terra` provides the tools for exploring and using `LLVM`. `Terra` is a
+low-level language tightly integrated with Lua. As a result it's
+optimized for creating domain-specific languages optimized by `LLVM`,
+including `CUDA` GPUs.
 
 Both `llama.cpp` and `Terra` are compiled from GitHub source repositories
 and the source projects are on the installed filesystem for use by the
@@ -58,7 +59,7 @@ just a matter of installing them in the package manager.
 
 I don't have any AMD CPUs or GPUs so I can't help you with specific tuning issues.
 For NVIDIA, you should have a GTX 1600 / RTX 2000 series card or newer. You need
-the NVIDIA Container Toolkit on the host but you do not need CUDA - that runs in
+the NVIDIA Container Toolkit on the host but you do not need `CUDA` - that runs in
 the container!
 
 ```
@@ -88,7 +89,7 @@ COMPUTE_MODE: CUDA
 IMAGE_NAME: three-l-lllama-base:latest
 CONTAINER_NAME: three-l-lllama-CUDA
 CONTAINER_HOME: /home/znmeb/three-l-lllama-CUDA-Home
-..You need to set a '*****' password to use 'sudo' in the container
+..You need to set a '<your-username-here>' password to use 'sudo' in the container
 New password:
 Retype new password:
 passwd: password updated successfully
@@ -102,7 +103,7 @@ Finally, populate the container:
 ```
 
 This will install the NVIDIA container toolkit in the container if the compute mode
-is CUDA. Then it will compile `llama.cpp`. This takes quite some time; it is optimzing
+is `CUDA`. Then it will compile `llama.cpp`. This takes quite some time; it is optimzing
 for your CPU via `--march=native`. However, `ccache` is enabled, so if you decide to
 re-compile with a newer version, modules from previous compiles that have not changed
 will not be recompiled.
@@ -168,10 +169,3 @@ localhost/three-l-lllama-base  latest            a33476d542d3  15 minutes ago  6
 docker.io/library/debian       trixie-backports  b964a672fbff  13 days ago     124 MB
 * Finished Populate Container
 ```
-
-## Getting started on a Raspberry Pi 5
-
-Prerequisites: a Raspberry Pi ***5*** with at least 8 GiB of RAM and a
-solid-state disk or USB 3 disk drive. microSD card storage, Pi 5s with
-less than 8 GiB of RAM or Raspberry Pis older than a Pi 5 / CM5 / Pi 500
-are not supported!
