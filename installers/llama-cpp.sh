@@ -16,7 +16,7 @@ mkdir --parents $HOME/Projects
 pushd $HOME/Projects > /dev/null
   echo "....Cloning llama.cpp $LLAMA_CPP_VERSION"
   rm --force --recursive llama.cpp
-  git clone --quiet --branch $LLAMA_CPP_VERSION $LLAMA_CPP_REPO 2>/dev/null
+  git clone --quiet --branch v$LLAMA_CPP_VERSION $LLAMA_CPP_REPO 2>/dev/null
   cd llama.cpp
 
   echo "....Configuring llama.cpp"
@@ -45,3 +45,6 @@ pushd $HOME/Projects > /dev/null
   echo "....llama.cpp installed"
 
 popd > /dev/null
+
+echo "....Finished"
+echo ""

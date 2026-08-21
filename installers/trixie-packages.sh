@@ -83,4 +83,6 @@ sudo mandb \
   >> $LOGFILE 2>&1
 sudo updatedb \
   >> $LOGFILE 2>&1
+
 echo "....Finished"
+echo ""

@@ -21,3 +21,4 @@ pushd /tmp > /dev/null
 
 popd > /dev/null
 echo "....CUDA toolkit is installed"
+echo ""

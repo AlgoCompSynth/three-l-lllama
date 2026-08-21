@@ -38,3 +38,6 @@ pushd $HOME/Projects > /dev/null
   tail -n 10 $LOGFILE
 
 popd > /dev/null
+
+echo "....Finished"
+echo ""

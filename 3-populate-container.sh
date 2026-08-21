@@ -24,6 +24,9 @@ pushd $CONTAINER_HOME/installers > /dev/null
   echo "..Installing Homebrew command line"
   distrobox enter $CONTAINER_NAME -- ./homebrew-command-line.sh
 
+  echo "..Installing coding agents"
+  distrobox enter $CONTAINER_NAME -- ./coding-agents.sh
+
 popd > /dev/null
 
 echo ""
