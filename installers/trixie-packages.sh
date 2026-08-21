@@ -28,6 +28,7 @@ sudo apt-get install -qqy \
   clpeak \
   curl \
   file \
+  firefox-esr \
   git \
   glslang-tools \
   glslc \
@@ -36,6 +37,7 @@ sudo apt-get install -qqy \
   libedit-dev \
   libopenblas64-openmp-dev \
   libopenblas-openmp-dev \
+  libpci-dev \
   libvulkan-dev \
   libzstd-dev \
   lsb-release \
