@@ -21,15 +21,15 @@ podman image build \
   --squash-all \
   .
 
-echo ""
-podman image list
-
 echo "..Creating $CONTAINER_NAME"
-distrobox assemble create \
-  --name $CONTAINER_NAME
-
-echo ""
-podman image list
+distrobox create \
+  --name $CONTAINER_NAME \
+  --home $CONTAINER_HOME \
+  --image $IMAGE_NAME \
+  --additional-packages "libpam-systemd systemd" \
+  --additional-flags "--security-opt=label=disable" \
+  $NVIDIA_FLAGS \
+  --init
 
 mkdir --parents $HOME/.local/bin
 export ENTRY_SCRIPT=$HOME/.local/bin/$CONTAINER_NAME
@@ -38,6 +38,27 @@ echo \
   "distrobox enter $CONTAINER_NAME" \
   > $ENTRY_SCRIPT
 chmod +x $ENTRY_SCRIPT
+
+cp -rp installers $CONTAINER_HOME
+pushd $CONTAINER_HOME/installers > /dev/null
+
+  source nvidia-smi-test.sh
+  if [[ "$COMPUTE_MODE" == "CUDA" ]]
+  then
+    distrobox enter $CONTAINER_NAME -- ./trixie-cuda.sh
+
+  fi
+
+  echo "..Installing command line tools"
+  distrobox enter $CONTAINER_NAME -- ./command-line.sh
+
+  echo "..Installing Terra"
+  distrobox enter $CONTAINER_NAME -- ./terralang.sh
+
+popd > /dev/null
+
+echo ""
+podman image list
 
 echo "* Finished Create Distrobox *"
 echo ""

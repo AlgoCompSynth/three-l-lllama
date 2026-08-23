@@ -1,12 +1,12 @@
-#! /usr/bin/env -S bash -l
+#! /usr/bin/env bash
 
 set -eu
 
 mkdir --parents $HOME/Logfiles
-export LOGFILE=$HOME/Logfiles/trixie-packages.log
+export LOGFILE=$HOME/Logfiles/base-packages.log
 rm --force $LOGFILE
 
-source set-versions.sh
+source set-installer-envars
 
 export MACHINE=$(uname --machine)
 export CMAKE_TARBALL=cmake-$CMAKE_VERSION-linux-$MACHINE.tar.gz
@@ -16,8 +16,8 @@ echo "....Update"
 export DEBIAN_FRONTEND=noninteractive
 sudo apt-get update -qq \
   >> $LOGFILE 2>&1
-echo "....Full upgrade"
-sudo apt-get full-upgrade -qqy \
+echo "....Upgrade"
+sudo apt-get upgrade -qqy \
   >> $LOGFILE 2>&1
 echo "....Installing base packages"
 sudo apt-get install -qqy \
@@ -62,9 +62,14 @@ pushd /tmp > /dev/null
   chmod +x llvm.sh
   sudo ./llvm.sh $LLVM_VERSION all \
     >> $LOGFILE 2>&1
+  sudo apt-get install -qqy \
+    clang-22-doc \
+    libomp-22-doc \
+    llvm-22-doc \
+    >> $LOGFILE 2>&1
   echo "....LLVM installed"
 
-  echo "....Installing CMake $LLVM_VERSION"
+  echo "....Installing CMake $CMAKE_VERSION"
   rm --force *.gz
   echo "....Downloading $CMAKE_URL"
   wget --quiet $CMAKE_URL

@@ -1,4 +1,4 @@
-#! /usr/bin/env -S bash -l
+#! /usr/bin/env bash
 
 set -eu
 
@@ -6,7 +6,13 @@ mkdir --parents $HOME/Logfiles
 export LOGFILE=$HOME/Logfiles/terralang.log
 rm --force $LOGFILE
 
-source set-versions.sh
+source set-installer-envars
+
+echo "....Activating Homebrew path"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
+
+echo "....Activating $UNSLOTH_VENV"
+source $UNSLOTH_VENV/bin/activate
 
 export TERRA_REPO=https://github.com/terralang/terra.git
 mkdir --parents $HOME/Projects
@@ -17,7 +23,7 @@ pushd $HOME/Projects > /dev/null
   cd terra/build
 
   echo "....Configuring terra"
-  cmake -Wno-dev -Wno-author .. \
+  cmake -Wno-author .. \
     >> $LOGFILE 2>&1
 
   echo "....Compiling terra"
