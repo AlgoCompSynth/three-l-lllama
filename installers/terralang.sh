@@ -8,13 +8,12 @@ rm --force $LOGFILE
 
 source set-installer-envars
 
-echo "....Activating Homebrew path"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
+#echo "....Activating Homebrew path"
+#eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 
-echo "....Activating $UNSLOTH_VENV"
-source $UNSLOTH_VENV/bin/activate
+#echo "....Activating $UNSLOTH_VENV"
+#source $UNSLOTH_VENV/bin/activate
 
-export TERRA_REPO=https://github.com/terralang/terra.git
 mkdir --parents $HOME/Projects
 pushd $HOME/Projects > /dev/null
   echo "....Cloning terra $TERRA_VERSION"

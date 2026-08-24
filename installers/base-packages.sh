@@ -8,6 +8,7 @@ rm --force $LOGFILE
 
 source set-installer-envars
 
+echo "....Computing download URLs"
 export MACHINE=$(uname --machine)
 export CMAKE_TARBALL=cmake-$CMAKE_VERSION-linux-$MACHINE.tar.gz
 export CMAKE_URL=https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/$CMAKE_TARBALL
@@ -28,7 +29,6 @@ sudo apt-get install -qqy \
   clpeak \
   curl \
   file \
-  firefox-esr \
   git \
   glslang-tools \
   glslc \
@@ -51,6 +51,7 @@ sudo apt-get install -qqy \
   vim-nox \
   vulkan-tools \
   wget \
+  xdg-utils \
   zlib1g-dev \
   >> $LOGFILE 2>&1
 echo "....Base packages installed"
@@ -82,6 +83,34 @@ pushd /tmp > /dev/null
   echo "....CMake installed"
 
 popd > /dev/null
+
+# https://support.mozilla.org/en-US/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-and-ubuntu-based-distributions-recommended
+
+echo "....Importing signing key"
+wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- \
+  | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc \
+  > /dev/null
+
+echo "....Adding Mozilla repository"
+sudo tee /etc/apt/sources.list.d/mozilla.sources > /dev/null << EOF
+Types: deb
+URIs: https://packages.mozilla.org/apt
+Suites: mozilla
+Components: main
+Signed-By: /etc/apt/keyrings/packages.mozilla.org.asc
+EOF
+
+echo "....Prioritizing Mozilla packages"
+sudo tee /etc/apt/preferences.d/mozilla > /dev/null << EOF
+Package: *
+Pin: origin packages.mozilla.org
+Pin-Priority: 1000
+EOF
+
+echo "....Installing Firefox developer edition"
+export DEBIAN_FRONTEND=noninteractive
+sudo apt-get update -qq >> $LOGFILE 2>&1 \
+  && sudo apt-get install -qqy firefox-devedition >> $LOGFILE 2>&1
 
 echo "....Updating search databases"
 sudo apt-file update \

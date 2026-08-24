@@ -39,7 +39,7 @@ echo \
   > $ENTRY_SCRIPT
 chmod +x $ENTRY_SCRIPT
 
-cp -rp installers $CONTAINER_HOME
+cp -rp installers options $CONTAINER_HOME
 pushd $CONTAINER_HOME/installers > /dev/null
 
   source nvidia-smi-test.sh
@@ -49,16 +49,16 @@ pushd $CONTAINER_HOME/installers > /dev/null
 
   fi
 
-  echo "..Installing command line tools"
-  distrobox enter $CONTAINER_NAME -- ./command-line.sh
-
-  echo "..Installing Terra"
+  echo "..Installing Terra from source"
   distrobox enter $CONTAINER_NAME -- ./terralang.sh
 
-popd > /dev/null
+  echo "..Installing command line base"
+  distrobox enter $CONTAINER_NAME -- ./command-line-base.sh
 
-echo ""
-podman image list
+  echo "..Installing AI tools"
+  distrobox enter $CONTAINER_NAME -- ./ai-tools.sh
+
+popd > /dev/null
 
 echo "* Finished Create Distrobox *"
 echo ""
