@@ -43,6 +43,7 @@ sudo apt-get install -qqy \
   lsb-release \
   man-db \
   ninja-build \
+  nvtop \
   plocate \
   pocl-opencl-icd \
   spirv-headers \
