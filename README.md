@@ -15,7 +15,7 @@
 
  * * *
 
-Well, sir, there _is_ a three-l lllama now!
+Well, sir, there is a three-l lllama now! Lua, LLVM and LLMs!
 
 ## Introduction
 
