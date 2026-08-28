@@ -39,7 +39,7 @@ echo \
   > $ENTRY_SCRIPT
 chmod +x $ENTRY_SCRIPT
 
-cp -rp installers options $CONTAINER_HOME
+cp -rp installers $CONTAINER_HOME
 pushd $CONTAINER_HOME/installers > /dev/null
 
   source nvidia-smi-test.sh

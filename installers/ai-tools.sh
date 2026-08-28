@@ -16,9 +16,14 @@ curl -fsSL https://unsloth.ai/install.sh | UNSLOTH_SKIP_AUTOSTART=1 sh \
   >> $LOGFILE 2>&1
 echo "....Installing unsloth bash completions"
 $HOME/.local/bin/unsloth --install-completion
-echo "....Exporting Unsloth Studio to host app list"
-distrobox-export --app \
-  $HOME/.local/share/applications/unsloth-studio.desktop
+
+if [[ "$(which distrobox-export 2> /dev/null | wc -l)" -gt "0" ]]
+then
+  echo "....Exporting Unsloth Studio to host app list"
+  distrobox-export --app \
+    $HOME/.local/share/applications/unsloth-studio.desktop
+
+fi
 
 echo "....Installing OpenCode"
 brew install anomalyco/tap/opencode \
