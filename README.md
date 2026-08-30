@@ -36,7 +36,7 @@ simply downloading and running models.
 
 `LLVM` is installed as `apt` packages from <https://apt.llvm.org/>;
 the current stable version is 22. `Terra`, compiled from source, provides
-tools for exploring and using `LLVM`.
+Lua-based tools for exploring and using `LLVM`.
 
 `Terra` is a low-level language tightly integrated with Lua. `Terra` is
 designed for creating domain-specific languages using `LLVM`, including
