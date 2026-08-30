@@ -8,11 +8,19 @@ rm --force $LOGFILE
 
 source set-installer-envars
 
-#echo "....Activating Homebrew path"
-#eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
+echo "....Activating Homebrew PATH"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 
-#echo "....Activating $UNSLOTH_VENV"
-#source $UNSLOTH_VENV/bin/activate
+echo "....Installing brew packages"
+brew install --yes --quiet \
+  cmake \
+  fennel \
+  luarocks \
+  >> $LOGFILE 2>&1
+
+echo "....Cleaning up"
+brew cleanup --prune all --scrub --quiet \
+  >> $LOGFILE 2>&1
 
 mkdir --parents $HOME/Projects
 pushd $HOME/Projects > /dev/null

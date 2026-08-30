@@ -49,11 +49,11 @@ pushd $CONTAINER_HOME/installers > /dev/null
 
   fi
 
-  echo "..Installing Terra from source"
-  distrobox enter $CONTAINER_NAME -- ./terralang.sh
-
   echo "..Installing command line base"
   distrobox enter $CONTAINER_NAME -- ./command-line-base.sh
+
+  echo "..Installing Terra from source"
+  distrobox enter $CONTAINER_NAME -- ./terralang.sh
 
   echo "..Installing AI tools"
   distrobox enter $CONTAINER_NAME -- ./ai-tools.sh

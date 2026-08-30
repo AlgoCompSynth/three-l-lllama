@@ -8,11 +8,6 @@ rm --force $LOGFILE
 
 source set-installer-envars
 
-echo "....Computing download URLs"
-export MACHINE=$(uname --machine)
-export CMAKE_TARBALL=cmake-$CMAKE_VERSION-linux-$MACHINE.tar.gz
-export CMAKE_URL=https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/$CMAKE_TARBALL
-
 echo "....Update"
 export DEBIAN_FRONTEND=noninteractive
 sudo apt-get update -qq \
@@ -70,18 +65,6 @@ pushd /tmp > /dev/null
     llvm-22-doc \
     >> $LOGFILE 2>&1
   echo "....LLVM installed"
-
-  echo "....Installing CMake $CMAKE_VERSION"
-  rm --force *.gz
-  echo "....Downloading $CMAKE_URL"
-  wget --quiet $CMAKE_URL
-  echo "....Unpacking $CMAKE_TARBALL to /usr/local"
-  sudo tar xvf $CMAKE_TARBALL --directory=/usr/local --strip-components=1 \
-    >> $LOGFILE 2>&1
-  echo "....Updating shared library tables"
-  sudo /usr/sbin/ldconfig \
-    >> $LOGFILE 2>&1
-  echo "....CMake installed"
 
 popd > /dev/null
 

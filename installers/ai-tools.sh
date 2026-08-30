@@ -10,6 +10,24 @@ rm --force $LOGFILE
 echo "....Activating Homebrew PATH"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 
+echo "....Installing brew packages"
+brew trust anomalyco/tap
+brew install --yes --quiet \
+  bubblewrap \
+  node \
+  anomalyco/tap/opencode \
+  pi-coding-agent \
+  uv \
+  >> $LOGFILE 2>&1
+brew install --yes --quiet --cask \
+  claude-code \
+  codex \
+  >> $LOGFILE 2>&1
+
+echo "....Cleaning up"
+brew cleanup --prune all --scrub --quiet \
+  >> $LOGFILE 2>&1
+
 echo "....Installing Unsloth Desktop"
 # https://unsloth.ai/download/linux
 curl -fsSL https://unsloth.ai/install.sh | UNSLOTH_SKIP_AUTOSTART=1 sh \
@@ -24,24 +42,6 @@ then
     $HOME/.local/share/applications/unsloth-studio.desktop
 
 fi
-
-echo "....Installing OpenCode"
-brew install anomalyco/tap/opencode \
-  >> $LOGFILE 2>&1
-
-echo "....Installing Pi coding agent"
-npm install -g --ignore-scripts @earendil-works/pi-coding-agent \
-  >> $LOGFILE 2>&1
-
-echo "....Installing pi-llama plugin"
-pi install git:github.com/huggingface/pi-llama \
-  >> $LOGFILE 2>&1
-
-echo "....Installing goose"
-curl -fsSL \
-  https://github.com/aaif-goose/goose/releases/download/stable/download_cli.sh \
-  | CONFIGURE=false bash \
-  >> $LOGFILE 2>&1
 
 echo "....Finished"
 echo ""
