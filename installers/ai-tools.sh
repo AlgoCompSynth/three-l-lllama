@@ -30,11 +30,9 @@ brew cleanup --prune all --scrub --quiet \
 
 echo "....Installing Unsloth Desktop"
 # https://unsloth.ai/download/linux
-/usr/bin/time curl -fsSL https://unsloth.ai/install.sh | UNSLOTH_SKIP_AUTOSTART=1 sh \
+curl -fsSL https://unsloth.ai/install.sh | UNSLOTH_SKIP_AUTOSTART=1 sh \
   >> $LOGFILE 2>&1
-echo ""
-tail -n 2 $LOGFILE
-echo ""
+
 echo "....Installing unsloth bash completions"
 $HOME/.local/bin/unsloth --install-completion
 

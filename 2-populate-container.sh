@@ -9,9 +9,6 @@ source set-host-envars
 cp -rp installers $CONTAINER_HOME
 pushd $CONTAINER_HOME/installers > /dev/null
 
-  echo "..Installing LLVM"
-  distrobox enter $CONTAINER_NAME -- ./apt-llvm.sh
-
   source nvidia-smi-test.sh
   if [[ "$COMPUTE_MODE" == "CUDA" ]]
   then

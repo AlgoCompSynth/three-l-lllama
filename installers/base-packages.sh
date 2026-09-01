@@ -25,15 +25,10 @@ sudo apt-get install -qqy \
   curl \
   file \
   git \
-  glslang-tools \
-  glslc \
   gnupg \
   libcurl4-openssl-dev \
   libedit-dev \
-  libopenblas64-openmp-dev \
-  libopenblas-openmp-dev \
   libpci-dev \
-  libvulkan-dev \
   libzstd-dev \
   lsb-release \
   man-db \
@@ -41,11 +36,9 @@ sudo apt-get install -qqy \
   nvtop \
   plocate \
   pocl-opencl-icd \
-  spirv-headers \
   sudo \
   time \
   vim-nox \
-  vulkan-tools \
   wget \
   xdg-utils \
   zlib1g-dev \
