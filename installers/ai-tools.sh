@@ -28,7 +28,7 @@ echo "....Cleaning up"
 brew cleanup --prune all --scrub --quiet \
   >> $LOGFILE 2>&1
 
-echo "....Installing Unsloth Desktop"
+echo "....Installing Unsloth Studio"
 # https://unsloth.ai/download/linux
 curl -fsSL https://unsloth.ai/install.sh | UNSLOTH_SKIP_AUTOSTART=1 sh \
   >> $LOGFILE 2>&1

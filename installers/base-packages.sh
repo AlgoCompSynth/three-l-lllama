@@ -20,8 +20,6 @@ sudo apt-get install -qqy \
   apt-file \
   build-essential \
   ccache \
-  clinfo \
-  clpeak \
   curl \
   file \
   git \
@@ -35,7 +33,6 @@ sudo apt-get install -qqy \
   ninja-build \
   nvtop \
   plocate \
-  pocl-opencl-icd \
   sudo \
   time \
   vim-nox \
