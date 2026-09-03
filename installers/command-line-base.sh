@@ -33,8 +33,10 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 
 echo "....Installing brew packages"
 brew install --yes --quiet \
+  fennel \
   font-caskaydia-cove-nerd-font \
   font-fira-code-nerd-font \
+  luarocks \
   neovim \
   ripgrep \
   starship \

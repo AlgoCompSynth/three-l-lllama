@@ -16,8 +16,6 @@ export PATH=$LLVM_PATH:$PATH
 echo "....Installing brew packages"
 brew install --yes --quiet \
   cmake \
-  fennel \
-  luarocks \
   >> $LOGFILE 2>&1
 
 echo "....Cleaning up"
