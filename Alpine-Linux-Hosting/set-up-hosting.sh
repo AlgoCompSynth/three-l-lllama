@@ -20,6 +20,15 @@ sudo apk add \
   xdg-utils \
   >> $LOGFILE 2>&1
 
+echo "....Setting up rootless Podman"
+# https://wiki.alpinelinux.org/wiki/Podman
+sudo rc-update add cgroups
+sudo rc-service cgroups start
+sudo modprobe tun
+echo tun | sudo tee -a /etc/modules
+echo $USER:100000:65536 | sudo tee /etc/subuid
+echo $USER:100000:65536 | sudo tee /etc/subgid
+
 echo "....Setting neovim configuration files"
 mkdir --parents $HOME/.config
 cp -rp ../installers/nvim $HOME/.config
