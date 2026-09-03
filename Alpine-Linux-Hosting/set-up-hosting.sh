@@ -2,13 +2,14 @@
 
 set -eu
 
-source set-installer-envars
+source ../installers/set-installer-envars
 
 echo "....Setting up home directory"
 mkdir --parents $HOME/.local/bin $HOME/Logfiles $HOME/Projects
 export LOGFILE=$HOME/Logfiles/command-line-base.log
 rm -f $LOGFILE
 
+echo "....Installing command line and hosting packages"
 sudo apk add \
   distrobox \
   font-cascadia-code-nerd \
