@@ -13,7 +13,9 @@ sudo apk add \
   font-cascadia-code-nerd \
   font-fira-code-nerd \
   neovim \
+  ripgrep \
   starship \
+  xdg-utils \
   >> $LOGFILE 2>&1
 
 echo "....Setting neovim configuration files"
