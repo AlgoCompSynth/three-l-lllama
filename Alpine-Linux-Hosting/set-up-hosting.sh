@@ -10,6 +10,7 @@ export LOGFILE=$HOME/Logfiles/command-line-base.log
 rm -f $LOGFILE
 
 sudo apk add \
+  distrobox \
   font-cascadia-code-nerd \
   font-fira-code-nerd \
   neovim \
@@ -20,10 +21,10 @@ sudo apk add \
 
 echo "....Setting neovim configuration files"
 mkdir --parents $HOME/.config
-cp -rp nvim $HOME/.config
+cp -rp ../installers/nvim $HOME/.config
 
 echo "....Setting starship configuration file"
-cp starship.toml $HOME/.config/
+cp ../installers/starship.toml $HOME/.config/
 
 if [[ "$(grep starship $HOME/.bashrc | wc -l)" == 0 ]]
 then
