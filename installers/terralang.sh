@@ -10,12 +10,12 @@ source set-installer-envars
 
 echo "....Activating Homebrew PATH"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
+echo "....Prepending $LLVM_PATH to PATH"
+export PATH=$LLVM_PATH:$PATH
 
 echo "....Installing brew packages"
 brew install --yes --quiet \
   cmake \
-  fennel \
-  luarocks \
   >> $LOGFILE 2>&1
 
 echo "....Cleaning up"
@@ -48,7 +48,8 @@ pushd $HOME/Projects > /dev/null
   /usr/bin/time terra run \
     >> $LOGFILE 2>&1 || true
   echo "....terra tests complete"
-  tail -n 10 $LOGFILE
+  tail -n 4 $LOGFILE
+  echo ""
 
 popd > /dev/null
 

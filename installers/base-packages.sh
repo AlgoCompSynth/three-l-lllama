@@ -20,53 +20,27 @@ sudo apt-get install -qqy \
   apt-file \
   build-essential \
   ccache \
-  clinfo \
-  clpeak \
   curl \
   file \
   git \
-  glslang-tools \
-  glslc \
   gnupg \
   libcurl4-openssl-dev \
   libedit-dev \
-  libopenblas64-openmp-dev \
-  libopenblas-openmp-dev \
   libpci-dev \
-  libvulkan-dev \
   libzstd-dev \
   lsb-release \
   man-db \
   ninja-build \
   nvtop \
   plocate \
-  pocl-opencl-icd \
-  spirv-headers \
   sudo \
   time \
   vim-nox \
-  vulkan-tools \
   wget \
   xdg-utils \
   zlib1g-dev \
   >> $LOGFILE 2>&1
 echo "....Base packages installed"
-
-pushd /tmp > /dev/null
-  echo "....Installing LLVM $LLVM_VERSION"
-  rm --force *.sh
-  wget --quiet https://apt.llvm.org/llvm.sh
-  chmod +x llvm.sh
-  sudo ./llvm.sh $LLVM_VERSION all \
-    >> $LOGFILE 2>&1
-  sudo apt-get install -qqy \
-    clang-22-doc \
-    libomp-22-doc \
-    llvm-22-doc \
-    >> $LOGFILE 2>&1
-  echo "....LLVM installed"
-
-popd > /dev/null
 
 # https://support.mozilla.org/en-US/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-and-ubuntu-based-distributions-recommended
 

@@ -3,6 +3,3 @@ export LLVM_VERSION=22
 export LLVM_PATH=/usr/lib/llvm-$LLVM_VERSION/bin
 export TERRA_VERSION=1.2.2
 export TERRA_REPO=https://github.com/terralang/terra.git
-
-echo "....Prepending $LLVM_PATH to PATH"
-export PATH=$LLVM_PATH:$PATH

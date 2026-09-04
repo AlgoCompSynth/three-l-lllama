@@ -16,8 +16,11 @@ pushd /tmp > /dev/null
     >> $LOGFILE 2>&1
   sudo apt-get update \
     >> $LOGFILE 2>&1
-  sudo apt-get -y install cuda-toolkit-13-3 \
+  /usr/bin/time sudo apt-get -y install cuda-toolkit-13-3 \
     >> $LOGFILE 2>&1
+  echo ""
+  tail -n 2 $LOGFILE
+  echo ""
 
 popd > /dev/null
 echo "....CUDA toolkit is installed"
