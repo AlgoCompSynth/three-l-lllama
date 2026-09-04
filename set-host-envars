@@ -22,8 +22,7 @@ if [[ "$ARCH" == "x86_64" \
 
 then
   export COMPUTE_MODE="CUDA"
-  #export NVIDIA_FLAGS="--device=nvidia.com/gpu=all"
-  export NVIDIA_FLAGS="--nvidia"
+  export NVIDIA_FLAGS="--device=nvidia.com/gpu=all"
 
 else
   export COMPUTE_MODE="CPU"
@@ -34,7 +33,6 @@ fi
 echo "COMPUTE_MODE: $COMPUTE_MODE"
 echo "NVIDIA_FLAGS: $NVIDIA_FLAGS"
 
-## Distrobox
 export IMAGE_NAME="three-l-lllama-base:latest"
 echo "IMAGE_NAME: $IMAGE_NAME"
 export CONTAINER_NAME="three-l-lllama-$COMPUTE_MODE"
