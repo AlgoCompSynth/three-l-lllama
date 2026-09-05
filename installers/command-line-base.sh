@@ -1,8 +1,6 @@
-#! /usr/bin/env bash
+#! /bin/bash
 
 set -eu
-
-source set-installer-envars
 
 echo "....Setting up home directory"
 mkdir --parents $HOME/.local/bin $HOME/Logfiles $HOME/Projects
@@ -36,7 +34,7 @@ brew install --yes --quiet \
   fennel \
   font-caskaydia-cove-nerd-font \
   font-fira-code-nerd-font \
-  luarocks \
+  lua \
   neovim \
   ripgrep \
   starship \
@@ -61,7 +59,7 @@ then
 
 fi
 
-if [[ "$(grep 'end aliases' $HOME/.bashrc | wc -l)" == 0 ]]
+if [[ "$(grep 'end aliases' $HOME/.bashrc 2> /dev/null | wc -l)" == 0 ]]
 then
 
 echo "....Appending aliases to $HOME/.bashrc"
@@ -72,6 +70,14 @@ cat << ALIASES_END >> $HOME/.bashrc
 if [[ ! "\$PATH" =~ "\$HOME/.local/bin" ]]
 then
   export PATH="\$HOME/.local/bin:\$PATH"
+
+fi
+
+# workaround for ghostty clients
+if [[ "\$TERM" == "xterm-ghostty" ]]
+then
+  export TERM="xterm-256color"
+
 fi
 
 alias l='ls -CF --color=auto'
