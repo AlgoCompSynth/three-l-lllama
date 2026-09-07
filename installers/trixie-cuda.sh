@@ -12,7 +12,7 @@ if [[ "$(which nvidia-smi 2>/dev/null | wc -l)" -gt "0" \
 then
 
   # https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Debian
-  echo "....Installing CUDA toolkit"
+  echo "....Installing CUDA compiler"
   pushd /tmp > /dev/null
     rm --force *.deb
     wget --quiet \
@@ -21,14 +21,11 @@ then
       >> $LOGFILE 2>&1
     sudo apt-get update \
       >> $LOGFILE 2>&1
-    /usr/bin/time sudo apt-get -y install cuda-toolkit-13-3 \
+    sudo apt-get -y install cuda-compiler-13-3 \
       >> $LOGFILE 2>&1
-    echo ""
-    tail -n 2 $LOGFILE
-    echo ""
 
   popd > /dev/null
-  echo "....CUDA toolkit is installed"
+  echo "....CUDA compiler is installed"
 
 else
   echo "....NVIDIA GPU not found - not installing CUDA"

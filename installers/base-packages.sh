@@ -25,6 +25,7 @@ sudo apt-get install -qqy \
   git \
   gnupg \
   libcurl4-openssl-dev \
+  libedit-dev \
   libzstd-dev \
   lsb-release \
   man-db \
@@ -32,6 +33,7 @@ sudo apt-get install -qqy \
   plocate \
   sudo \
   time \
+  tree \
   vim-nox \
   wget \
   xdg-utils \

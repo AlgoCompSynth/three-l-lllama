@@ -18,16 +18,16 @@ pushd $HOME/Projects > /dev/null
 
   echo "....Configuring terra"
   cmake -Wno-author .. \
-    #>> $LOGFILE 2>&1
+    >> $LOGFILE 2>&1
 
   echo "....Compiling terra"
   /usr/bin/time make -j$(nproc) \
-    #>> $LOGFILE 2>&1
+    >> $LOGFILE 2>&1
   echo "....Installing terra"
   sudo make install \
-    #>> $LOGFILE 2>&1
+    >> $LOGFILE 2>&1
   sudo /sbin/ldconfig \
-    #>> $LOGFILE 2>&1
+    >> $LOGFILE 2>&1
   echo "....terra installed"
 
   echo "....Testing terra"
