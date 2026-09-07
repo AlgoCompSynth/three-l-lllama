@@ -1,22 +1,15 @@
-#! /usr/bin/env bash
+#! /bin/bash -l
 
 set -eu
 
 source set-installer-envars
-
-echo "....Setting up home directory"
-mkdir --parents $HOME/.local/bin $HOME/Logfiles $HOME/Projects
 export LOGFILE=$HOME/Logfiles/command-line-base.log
 rm --force $LOGFILE
 
-if [[ ! -d /home/linuxbrew ]]
-then
-  echo "....Installing Homebrew"
-  NONINTERACTIVE=1 /bin/bash -c \
-    "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" \
-    >> $LOGFILE 2>&1
-
-fi
+echo "....Installing Homebrew"
+NONINTERACTIVE=1 /bin/bash -c \
+  "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" \
+  >> $LOGFILE 2>&1
 
 if [[ "$(grep linuxbrew $HOME/.bashrc 2> /dev/null | wc -l)" == "0" ]]
 then
@@ -33,13 +26,16 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 
 echo "....Installing brew packages"
 brew install --yes --quiet \
+  bubblewrap \
   fennel \
   font-caskaydia-cove-nerd-font \
   font-fira-code-nerd-font \
   luarocks \
   neovim \
+  node \
   ripgrep \
   starship \
+  uv \
   >> $LOGFILE 2>&1
 
 echo "....Cleaning up"

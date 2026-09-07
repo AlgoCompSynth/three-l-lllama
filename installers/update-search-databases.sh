@@ -1,0 +1,20 @@
+#! /bin/bash -l
+
+set -eu
+
+source set-installer-envars
+export LOGFILE=$HOME/Logfiles/update-search-databases.log
+rm --force $LOGFILE
+
+source set-installer-envars
+
+echo "....Updating search databases"
+sudo apt-file update \
+  >> $LOGFILE 2>&1
+sudo mandb \
+  >> $LOGFILE 2>&1
+sudo updatedb \
+  >> $LOGFILE 2>&1
+
+echo "....Finished"
+echo ""

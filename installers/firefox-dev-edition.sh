@@ -1,6 +1,10 @@
-#! /usr/bin/env bash
+#! /bin/bash -l
 
 set -eu
+
+source set-installer-envars
+export LOGFILE=$HOME/Logfiles/firefox-dev-edition.log
+rm --force $LOGFILE
 
 # https://support.mozilla.org/en-US/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-and-ubuntu-based-distributions-recommended
 
@@ -27,7 +31,10 @@ EOF
 
 echo "....Installing Firefox developer edition"
 export DEBIAN_FRONTEND=noninteractive
-apt-get update -qq \
-  && apt-get install -qqy firefox-devedition
+sudo apt-get update -qq \
+  && apt-get install -qqy \
+  firefox-devedition \
+  >> $LOGFILE 2>&1
 
 echo "....Finished"
+echo ""

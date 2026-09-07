@@ -1,12 +1,10 @@
-#! /usr/bin/env bash
+#! /bin/bash -l
 
 set -eu
 
-mkdir --parents $HOME/Logfiles
+source set-installer-envars
 export LOGFILE=$HOME/Logfiles/apt-llvm.log
 rm --force $LOGFILE
-
-source set-installer-envars
 
 export DEBIAN_FRONTEND=noninteractive
 pushd /tmp > /dev/null
