@@ -14,8 +14,8 @@ podman image build \
   --tag $IMAGE_NAME \
   $NVIDIA_FLAGS \
   $SECURITY_FLAGS \
+  --squash-all \
   .
-  #--squash-all \
 
 echo ""
 podman image list
