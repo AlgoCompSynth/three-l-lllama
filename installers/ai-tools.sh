@@ -17,13 +17,21 @@ source $UNSLOTH_ENV/bin/activate
 uv pip install unsloth --torch-backend=auto \
   >> $LOGFILE 2>&1
 
+echo "....Installing Unsloth Studio"
+unsloth studio setup \
+  >> $LOGFILE 2>&1
+
 echo "....Installing unsloth bash completions"
 unsloth --install-completion
+
+echo "....Appending Unsloth Studio activation to $HOME/.bashrc"
+echo "source $UNSLOTH_ENV/bin/activate" >> $HOME/.bashrc
 
 echo "....Installing coding agents"
 brew trust anomalyco/tap
 brew install --yes --quiet \
   anomalyco/tap/opencode \
+  fd \
   pi-coding-agent \
   >> $LOGFILE 2>&1
 brew install --yes --quiet --cask \

@@ -4,7 +4,7 @@ set -eu
 
 echo "** Root Scripts **"
 
-mkdir --parents $HOME/Logfiles
+mkdir --parents $HOME/Logfiles $HOME/Projects
 for script in \
   base-packages.sh \
   trixie-cuda.sh \

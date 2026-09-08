@@ -9,7 +9,6 @@ rm --force $LOGFILE
 echo "....Prepending $LLVM_PATH to PATH"
 export PATH=$LLVM_PATH:$PATH
 
-mkdir --parents $HOME/Projects
 pushd $HOME/Projects > /dev/null
   echo "....Cloning terra $TERRA_VERSION"
   rm --force --recursive terra
