@@ -6,6 +6,7 @@ echo "** User Scripts **"
 
 mkdir --parents $HOME/.local/bin $HOME/Logfiles $HOME/Projects
 for script in \
+  homebrew.sh \
   command-line-base.sh \
   ai-tools.sh
 
