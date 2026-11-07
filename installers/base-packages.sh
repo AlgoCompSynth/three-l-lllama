@@ -21,6 +21,7 @@ sudo apt-get install -qqy \
   ccache \
   cmake \
   curl \
+  dialog \
   file \
   git \
   gnupg \
