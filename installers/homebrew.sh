@@ -7,6 +7,8 @@ export LOGFILE=$HOME/Logfiles/homebrew.log
 rm --force $LOGFILE
 
 echo "....Installing Homebrew"
+sudo mkdir --parents /home/linuxbrew/.linuxbrew/
+sudo chown --recursive $USER:$USER /home/linuxbrew/.linuxbrew/
 NONINTERACTIVE=1 /bin/bash -c \
   "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" \
   >> $LOGFILE 2>&1
