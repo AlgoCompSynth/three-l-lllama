@@ -15,11 +15,12 @@ brew install --yes --quiet \
   fennel \
   font-caskaydia-cove-nerd-font \
   font-fira-code-nerd-font \
-  luarocks \
+  luajit \
   neovim \
   node \
   ripgrep \
   starship \
+  tmux \
   uv \
   >> $LOGFILE 2>&1
 
@@ -30,6 +31,9 @@ brew cleanup --prune all --scrub --quiet \
 echo "....Setting neovim configuration files"
 mkdir --parents $HOME/.config
 cp -rp nvim $HOME/.config
+
+echo "....Setting tmux configuration file"
+cp tmux.conf $HOME/.tmux.conf
 
 echo "....Setting starship configuration file"
 cp starship.toml $HOME/.config/
