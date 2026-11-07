@@ -35,7 +35,6 @@ sudo apt-get install -qqy \
   plocate \
   sudo \
   time \
-  tree \
   vim-nox \
   wget \
   xdg-utils \

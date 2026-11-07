@@ -21,6 +21,7 @@ brew install --yes --quiet \
   ripgrep \
   starship \
   tmux \
+  tree \
   uv \
   >> $LOGFILE 2>&1
 
