@@ -9,26 +9,8 @@ rm --force $LOGFILE
 echo "....Activating Homebrew PATH"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 
-echo "....Installing Unsloth Core"
-# https://github.com/unslothai/unsloth/tree/main#unsloth-core-code-based
-# We already have `uv` via Homebrew!
-uv venv $UNSLOTH_ENV --python 3.13
-source $UNSLOTH_ENV/bin/activate
-uv pip install unsloth --torch-backend=auto \
-  >> $LOGFILE 2>&1
-
-echo "....Installing Unsloth Studio"
-unsloth studio setup \
-  >> $LOGFILE 2>&1
-
-echo "....Installing unsloth bash completions"
-unsloth --install-completion
-
-echo "....Appending Unsloth Studio activation to $HOME/.bashrc"
-echo "source $UNSLOTH_ENV/bin/activate" >> $HOME/.bashrc
-
 echo "....Installing coding agents"
-brew trust anomalyco/tap
+brew trust --formula anomalyco/tap/opencode
 brew install --yes --quiet \
   anomalyco/tap/opencode \
   fd \
