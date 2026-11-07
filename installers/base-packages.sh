@@ -33,6 +33,8 @@ sudo apt-get install -qqy \
   man-db \
   nvtop \
   plocate \
+  retroarch \
+  retroarch-dev \
   sudo \
   time \
   vim-nox \
