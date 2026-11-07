@@ -28,6 +28,7 @@ sudo apt-get install -qqy \
   libcurl4-openssl-dev \
   libedit-dev \
   libzstd-dev \
+  love \
   lsb-release \
   man-db \
   nvtop \
