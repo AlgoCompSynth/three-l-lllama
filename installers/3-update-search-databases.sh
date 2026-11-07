@@ -10,11 +10,11 @@ source set-installer-envars
 
 echo "....Updating search databases"
 sudo apt-file update \
-  >> $LOGFILE 2>&1
+    >> $LOGFILE 2>&1
 sudo mandb \
-  >> $LOGFILE 2>&1
+    >> $LOGFILE 2>&1
 sudo updatedb \
-  >> $LOGFILE 2>&1
+    >> $LOGFILE 2>&1
 
 echo "....Finished"
 echo ""

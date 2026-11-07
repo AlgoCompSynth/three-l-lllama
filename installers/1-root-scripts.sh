@@ -6,13 +6,13 @@ echo "** Root Scripts **"
 
 mkdir --parents $HOME/Logfiles $HOME/Projects
 for script in \
-  base-packages.sh \
-  trixie-cuda.sh \
-  llvm-apt.sh \
-  terralang.sh
+    base-packages.sh \
+    trixie-cuda.sh \
+    llvm-apt.sh \
+    terralang.sh
 
 do
-  ./$script
+    ./$script
 
 done
 

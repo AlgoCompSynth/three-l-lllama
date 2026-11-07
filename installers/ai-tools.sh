@@ -12,18 +12,18 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 echo "....Installing coding agents"
 brew trust --formula anomalyco/tap/opencode
 brew install --yes --quiet \
-  anomalyco/tap/opencode \
-  fd \
-  pi-coding-agent \
-  >> $LOGFILE 2>&1
+    anomalyco/tap/opencode \
+    fd \
+    pi-coding-agent \
+    >> $LOGFILE 2>&1
 brew install --yes --quiet --cask \
-  claude-code \
-  codex \
-  >> $LOGFILE 2>&1
+    claude-code \
+    codex \
+    >> $LOGFILE 2>&1
 
 echo "....Cleaning up"
 brew cleanup --prune all --scrub --quiet \
-  >> $LOGFILE 2>&1
+    >> $LOGFILE 2>&1
 
 echo "....Finished"
 echo ""
