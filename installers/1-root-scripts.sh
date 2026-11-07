@@ -9,8 +9,7 @@ for script in \
   base-packages.sh \
   trixie-cuda.sh \
   llvm-apt.sh \
-  terralang.sh \
-  update-search-databases.sh
+  terralang.sh
 
 do
   ./$script
